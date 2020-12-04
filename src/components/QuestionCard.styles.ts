@@ -23,7 +23,7 @@ export const ButtonWrapper = styled.div<ButtonWrapperProps>`
   :hover {
     opacity: 0.8;
   }
-  button {
+  questionButton {
     cursor: pointer;
     user-select: none;
     font-size: 0.8rem;

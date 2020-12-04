@@ -28,7 +28,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ ...props }) => {
                 userClicked={props.userAnswer?.answer === answer}
               >
                 <button
-                  className="button"
+                  className="questionButton"
                   disabled={!!props.userAnswer ? true : false}
                   value={answer}
                   onClick={props.callback}
