@@ -1,5 +1,6 @@
 import React from "react";
 import { AnswerObject } from "../App";
+import { Wrapper, ButtonWrapper } from "./QuestionCard.styles";
 
 interface QuestionCardProps {
   question: string;
@@ -13,23 +14,32 @@ interface QuestionCardProps {
 export const QuestionCard: React.FC<QuestionCardProps> = ({ ...props }) => {
   return (
     <div>
-      <p className="number">
-        Question: {props.queestionNumber}/{props.totalQuestions}
-      </p>
-      <p dangerouslySetInnerHTML={{ __html: props.question }} />
-      <div>
-        {props.answers.map((answer) => (
-          <div key={answer}>
-            <button
-              disabled={!!props.userAnswer}
-              value={answer}
-              onClick={props.callback}
-            >
-              <span dangerouslySetInnerHTML={{ __html: answer }} />
-            </button>
-          </div>
-        ))}
-      </div>
+      <Wrapper>
+        <p className="number">
+          Question: {props.queestionNumber}/{props.totalQuestions}
+        </p>
+        <p dangerouslySetInnerHTML={{ __html: props.question }} />
+        <div>
+          {props.answers.map((answer) => (
+            <div key={answer}>
+              <ButtonWrapper
+                key={answer}
+                correct={props.userAnswer?.correctAnswer === answer}
+                userClicked={props.userAnswer?.answer === answer}
+              >
+                <button
+                  className="button"
+                  disabled={!!props.userAnswer ? true : false}
+                  value={answer}
+                  onClick={props.callback}
+                >
+                  <span dangerouslySetInnerHTML={{ __html: answer }} />
+                </button>
+              </ButtonWrapper>
+            </div>
+          ))}
+        </div>
+      </Wrapper>
     </div>
   );
 };
